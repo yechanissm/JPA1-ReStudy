@@ -13,15 +13,14 @@ public class Main {
 
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        Member member = new Member();
+        try {
+            Member member = em.find(Member.class, 2L);
 
-        member.setId(1L);
-        member.setName("lee");
-
-        em.persist(member);
-
-        tx.commit();
-        em.close();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close();
+        }
 
         emf.close();
     }
