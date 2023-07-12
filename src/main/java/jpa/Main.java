@@ -10,6 +10,13 @@ public class Main {
 
         EntityManager entityManager = emf.createEntityManager();
 
+        Member member = new Member();
+
+        member.setId(1L);
+        member.setName("lee");
+
+        entityManager.persist(member);
+
         entityManager.close();
 
         emf.close();
