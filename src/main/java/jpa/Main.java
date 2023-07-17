@@ -14,7 +14,20 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member = em.find(Member.class, 2L);
+
+            Member member = new Member();
+            member.setId(101L);
+            member.setName("lee");
+
+            System.out.println("======BEFORE=====");
+            em.persist(member);
+            System.out.println("======AFTER======");
+
+            Member findMember = em.find(Member.class, 101L);
+
+            System.out.println("findMember.id = " + findMember.getId());
+            System.out.println("findMember.name = " + findMember.getName());
+
 
         } catch (Exception e) {
             tx.rollback();
