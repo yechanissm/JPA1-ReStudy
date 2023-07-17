@@ -15,11 +15,7 @@ public class Main {
         tx.begin();
         try {
 
-            Member member1 = new Member(150L, "A");
 
-            member1.setName("ZZZZZ");
-
-            System.out.println("=========");
 
             tx.commit();
 
