@@ -1,5 +1,6 @@
 package jpa;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,11 +9,9 @@ public class Member {
 
     @Id
     private Long id;
-    private String name;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(nullable = true, length = 10)
+    private String name;
 
     public Member() {
 
@@ -22,6 +21,11 @@ public class Member {
         this.id = id;
         this.name = name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
