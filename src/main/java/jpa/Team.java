@@ -13,6 +13,11 @@ public class Team {
 
     private String name;
 
+    /*
+    다대일 양방향
+    team이라는 것에 의해 매핑이 됨을 나타낸다.
+    단순 읽기만 가능
+     */
     @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
 

@@ -15,6 +15,11 @@ public class Member {
     @Column(name = "username")
     private String username;
 
+    /*
+    다대일 단방향 매핑
+    다대일 쪽 관계중 다쪽이므로, 외래키를 이쪽에 잡아주면 된다.
+    다대일에선 다쪽인 외래키 쪽을 잡은쪽이 연관관계의 주인이 된다.
+     */
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
