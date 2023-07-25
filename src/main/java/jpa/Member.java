@@ -28,6 +28,9 @@ public class Member {
     @JoinColumn(name = "locker_id")
     private Locker locker;
 
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
+
     public Member() {
 
     }
