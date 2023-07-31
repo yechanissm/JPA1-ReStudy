@@ -15,24 +15,15 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
+            Movie movie = new Movie();
 
-            Member member = new Member();
-            member.setUsername("member1");
-            member.changeTeam(team);
-            em.persist(member);
+            movie.setActor("aaa");
+            movie.setDirector("bbb");
+            movie.setName("바람과함꼐사라지다");
+            movie.setPrice(10000);
 
-            em.flush();
-            em.clear();
+            em.persist(movie);
 
-            Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for (Member member1 : members) {
-                System.out.println("m = " + member.getUsername());
-            }
 
             tx.commit();
         } catch (Exception e) {
