@@ -16,14 +16,12 @@ public class Main {
         tx.begin();
         try {
             Movie movie = new Movie();
-
-            movie.setActor("aaa");
-            movie.setDirector("bbb");
-            movie.setName("바람과함꼐사라지다");
+            movie.setDirector("aaa");
+            movie.setActor("bbb");
+            movie.setName("바람");
             movie.setPrice(10000);
 
             em.persist(movie);
-
 
             tx.commit();
         } catch (Exception e) {
