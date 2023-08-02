@@ -20,20 +20,26 @@ public class Main {
             team.setName("teamA");
             em.persist(team);
 
-            Member member = new Member();
-            member.setUsername("user1");
-            member.setTeam(team);
-            em.persist(member);
+            Team team2 = new Team();
+            team2.setName("teamB");
+            em.persist(team2);
+
+            Member member1 = new Member();
+            member1.setUsername("user1");
+            member1.setTeam(team);
+            em.persist(member1);
+
+            Member member2 = new Member();
+            member2.setUsername("user2");
+            member2.setTeam(team2);
+            em.persist(member2);
 
             em.flush();
             em.clear();
 
-            Member m = em.find(Member.class, member.getId());
-            System.out.println("m =  " + m.getTeam().getClass());
+            List<Member> members = em.createQuery("select m from Member m", Member.class)
+                    .getResultList();
 
-            System.out.println("==============");
-            m.getTeam().getName();
-            System.out.println("==============");
 
             tx.commit();
         } catch (Exception e) {
