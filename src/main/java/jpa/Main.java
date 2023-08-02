@@ -16,12 +16,24 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
+            Team team = new Team();
+            team.setName("teamA");
+            em.persist(team);
+
             Member member = new Member();
             member.setUsername("user1");
-            member.setCreatedBy("kim");
-            member.setCreateDate(LocalDateTime.now());
-
+            member.setTeam(team);
             em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            Member m = em.find(Member.class, member.getId());
+            System.out.println("m =  " + m.getTeam().getClass());
+
+            System.out.println("==============");
+            m.getTeam().getName();
+            System.out.println("==============");
 
             tx.commit();
         } catch (Exception e) {
