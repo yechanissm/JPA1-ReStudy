@@ -16,23 +16,10 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Parent parent = new Parent();
-
-            Child child1 = new Child();
-            Child child2 = new Child();
-
-            parent.addChild(child1);
-            parent.addChild(child2);
-
-            em.persist(parent);
-
-            em.flush();
-            em.clear();
-
-            Parent findParent = em.find(Parent.class, parent.getId());
-            findParent.getChildList().remove(0);
-
-
+            Member member = new Member();
+            member.setUsername("lee");
+            member.setAddress(new Address("city","zipcode","1000"));
+            em.persist(member);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
