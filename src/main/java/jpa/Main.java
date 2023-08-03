@@ -28,6 +28,17 @@ public class Main {
             member.getAddressHistory().add(new Address("old2", "street", "10000"));
 
             em.persist(member);
+            
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            System.out.println("==============시작===========");
+            List<Address> addressHistory = findMember.getAddressHistory();
+            for (Address address : addressHistory) {
+                System.out.println(address.getCity());
+            }
 
 
             tx.commit();
