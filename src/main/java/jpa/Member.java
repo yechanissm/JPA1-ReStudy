@@ -38,11 +38,15 @@ public class Member extends BaseEntity{
     )
     private Set<String> favoriteFoods = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "address", joinColumns =
+    //@ElementCollection
+    //@CollectionTable(name = "address", joinColumns =
+    //@JoinColumn(name = "member_id")
+    //)
+    //private List<Address> addressHistory = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "member_id")
-    )
-    private List<Address> addressHistory = new ArrayList<>();
+    private List<AddressEntity> addressHistory = new ArrayList<>();
 
     private Period period;
 
@@ -60,6 +64,14 @@ public class Member extends BaseEntity{
 
     public String getUsername() {
         return username;
+    }
+
+    public List<AddressEntity> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<AddressEntity> addressHistory) {
+        this.addressHistory = addressHistory;
     }
 
     public void setUsername(String username) {
@@ -87,22 +99,6 @@ public class Member extends BaseEntity{
         this.period = period;
     }
 
-    public Locker getLocker() {
-        return locker;
-    }
-
-    public void setLocker(Locker locker) {
-        this.locker = locker;
-    }
-
-    public List<MemberProduct> getMemberProducts() {
-        return memberProducts;
-    }
-
-    public void setMemberProducts(List<MemberProduct> memberProducts) {
-        this.memberProducts = memberProducts;
-    }
-
     public Address getHomeAddress() {
         return homeAddress;
     }
@@ -117,13 +113,5 @@ public class Member extends BaseEntity{
 
     public void setFavoriteFoods(Set<String> favoriteFoods) {
         this.favoriteFoods = favoriteFoods;
-    }
-
-    public List<Address> getAddressHistory() {
-        return addressHistory;
-    }
-
-    public void setAddressHistory(List<Address> addressHistory) {
-        this.addressHistory = addressHistory;
     }
 }
