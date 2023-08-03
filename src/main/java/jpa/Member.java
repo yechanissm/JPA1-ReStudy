@@ -1,9 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Member extends BaseEntity{
@@ -34,8 +32,17 @@ public class Member extends BaseEntity{
     @Embedded
     private Address homeAddress;
 
-    @Embedded
-    private Address workAddress;
+    @ElementCollection
+    @CollectionTable(name = "favorite_food", joinColumns =
+    @JoinColumn(name = "member_id")
+    )
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "address", joinColumns =
+    @JoinColumn(name = "member_id")
+    )
+    private List<Address> addressHistory = new ArrayList<>();
 
     private Period period;
 
@@ -72,19 +79,51 @@ public class Member extends BaseEntity{
         this.team = team;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public Period getPeriod() {
         return period;
     }
 
     public void setPeriod(Period period) {
         this.period = period;
+    }
+
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
+
+    public List<MemberProduct> getMemberProducts() {
+        return memberProducts;
+    }
+
+    public void setMemberProducts(List<MemberProduct> memberProducts) {
+        this.memberProducts = memberProducts;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+    public List<Address> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<Address> addressHistory) {
+        this.addressHistory = addressHistory;
     }
 }
