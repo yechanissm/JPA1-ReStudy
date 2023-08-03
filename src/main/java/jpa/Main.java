@@ -16,10 +16,14 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member = new Member();
-            member.setUsername("lee");
-            member.setAddress(new Address("city","zipcode","1000"));
-            em.persist(member);
+            Address address = new Address("city","zipcode","1000");
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            member1.setAddress(address);
+            em.persist(member1);
+
+
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

@@ -31,7 +31,11 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
-    private Address address;
+    @Embedded
+    private Address homeAddress;
+
+    @Embedded
+    private Address workAddress;
 
     private Period period;
 
